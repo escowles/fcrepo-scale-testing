@@ -47,9 +47,9 @@ while [ $RUN -lt $RUNS ]; do
 			ITEM=0
 			while [ $ITEM -lt $BATCH_SIZE ]; do
 				if [ "$TYPE" = "Pair" ]; then
-					curl -s -X POST "Content-type: text/turtle" -d "<> <http://purl.org/dc/terms/title> \"Type $TYPE, Batch $BATCH, Item $ITEM\"" $BASE/$TYPE > /dev/null
+					curl -s -X POST -H "Content-type: text/turtle" -d "<> <http://purl.org/dc/terms/title> \"Type $TYPE, Batch $BATCH, Item $ITEM\"" $BASE/$TYPE > /dev/null
 				else
-					curl -s -X PUT "Content-type: text/turtle" -d "<> <http://purl.org/dc/terms/title> \"Type $TYPE, Batch $BATCH, Item $ITEM\"" $BASE/$TYPE/$BATCH-$ITEM > /dev/null
+					curl -s -X PUT -H "Content-type: text/turtle" -d "<> <http://purl.org/dc/terms/title> \"Type $TYPE, Batch $BATCH, Item $ITEM\"" $BASE/$TYPE/$BATCH-$ITEM > /dev/null
 				fi
 				ITEM=$(( $ITEM + 1 ))
 			done
